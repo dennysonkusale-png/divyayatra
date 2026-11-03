@@ -14,7 +14,7 @@ Open `index.html` in any browser. No build step, no server, no npm install.
 |---|---|
 | Shrines | 64 (12 Jyotirlingas + 52 Shakti Peethas) |
 | Coverage | 30 states & regions across 5 countries |
-| Languages | हिन्दी (default), English, मराठी, संस्कृतम् |
+| Languages | हिन्दी (default), मराठी, संस्कृतम्, English |
 | Per shrine | history, deity, relic of Sati, Bhairava, nearest railway, air/train/road routes, season, festivals, three tiers of accommodation, coordinates |
 | File | one `index.html`, ~320 KB |
 
@@ -22,11 +22,11 @@ Open `index.html` in any browser. No build step, no server, no npm install.
 
 **Hindi is the default.** The page ships in Hindi — the markup itself, `<html lang>`, the title and
 the meta description — so a first-time visitor, a crawler or a browser with JavaScript disabled all
-see Hindi. English remains a full peer in the switcher, not a fallback.
+see Hindi. English remains a full peer, listed last in the switcher.
 
-The header carries a switcher: हिन्दी · English · मराठी · संस्कृतम्. The choice is remembered in
-`localStorage`; anyone who has not chosen yet lands on Hindi. Switching re-renders the grid and any
-open dialog in place.
+Switcher order: हिन्दी · मराठी · संस्कृतम् · English. The choice is remembered in `localStorage`;
+anyone who has not chosen yet lands on Hindi. Switching re-renders the grid and any open dialog in
+place.
 
 Translated today: every interface string, all 64 shrine names, all 64 one-line descriptions, and
 search works in the selected script. The long-form history and route paragraphs remain in English,
@@ -36,7 +36,7 @@ and the detail view says so in the active language.
 
 The architecture is data-driven — a new language needs no code change:
 
-1. Add an entry to `LANGS` (`{ code, native, english }`).
+1. Add an entry to `LANGS` (`{ code, native, english }`); array order is the order in the switcher.
 2. Add `L10N[code] = { ui: {...}, shrines: { <id>: { name, short } } }` with the same keys as
    `UI_EN` (English source of truth) and the same shrine ids.
 3. Missing keys fall back to English automatically, so a partial translation is safe to ship.
