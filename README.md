@@ -1,4 +1,4 @@
-# DivyaYatra — Sacred Shrines Explorer
+# DivyaYatra — पवित्र तीर्थ अन्वेषक
 
 A single-file web app for the **12 Jyotirlingas** and the **52 Shakti Peethas** of the Indian
 subcontinent: history and mythology, the nearest railway station with its distance, step-by-step
@@ -14,15 +14,19 @@ Open `index.html` in any browser. No build step, no server, no npm install.
 |---|---|
 | Shrines | 64 (12 Jyotirlingas + 52 Shakti Peethas) |
 | Coverage | 30 states & regions across 5 countries |
-| Languages | English, हिन्दी, मराठी, संस्कृतम् |
+| Languages | हिन्दी (default), English, मराठी, संस्कृतम् |
 | Per shrine | history, deity, relic of Sati, Bhairava, nearest railway, air/train/road routes, season, festivals, three tiers of accommodation, coordinates |
-| File | one `index.html`, ~310 KB |
+| File | one `index.html`, ~320 KB |
 
 ## Languages
 
-The header carries a language switcher (EN / हिन्दी / मराठी / संस्कृतम्). The choice is remembered
-in `localStorage`, and on a first visit the app follows the browser's language if it is one of the
-four. Switching re-renders the grid and any open dialog in place.
+**Hindi is the default.** The page ships in Hindi — the markup itself, `<html lang>`, the title and
+the meta description — so a first-time visitor, a crawler or a browser with JavaScript disabled all
+see Hindi. English remains a full peer in the switcher, not a fallback.
+
+The header carries a switcher: हिन्दी · English · मराठी · संस्कृतम्. The choice is remembered in
+`localStorage`; anyone who has not chosen yet lands on Hindi. Switching re-renders the grid and any
+open dialog in place.
 
 Translated today: every interface string, all 64 shrine names, all 64 one-line descriptions, and
 search works in the selected script. The long-form history and route paragraphs remain in English,
@@ -36,6 +40,8 @@ The architecture is data-driven — a new language needs no code change:
 2. Add `L10N[code] = { ui: {...}, shrines: { <id>: { name, short } } }` with the same keys as
    `UI_EN` (English source of truth) and the same shrine ids.
 3. Missing keys fall back to English automatically, so a partial translation is safe to ship.
+
+`DEFAULT_LANG` sets what an unvisited browser sees.
 
 ## Features
 
@@ -66,6 +72,7 @@ Everything lives in `index.html`:
 - `COORDS` — `[latitude, longitude]` per shrine; every map link reads from here
 - `PITHA_META` — relic, Bhairava and country for each Peetha
 - `UI_EN` / `L10N` — interface strings and per-language shrine names and summaries
+- `DEFAULT_LANG` — the language an unvisited browser sees
 
 ## Credits
 
