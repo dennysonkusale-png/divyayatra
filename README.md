@@ -48,8 +48,9 @@ The architecture is data-driven — a new language needs no code change:
 - **Search** across shrine name, town, state, country, deity, relic and Bhairava — in any script
 - **Filter tabs** — All 64 / 12 Jyotirlingas / 52 Shakti Peethas, with live counts
 - **Detail modal** with an embedded OpenStreetMap panel, coordinates and a copy button
-- **Map hand-off** to Google Maps, Apple Maps and OpenStreetMap at exact coordinates
+- **Map hand-off** to Google Maps, Mappls, Apple Maps and OpenStreetMap at exact coordinates
 - **Accommodation panel** — trust guest house, dharamshala and hotel tiers, with live search links
+  and a Mappls nearby-hotels search
 - **Dark / light theme** with localStorage memory, respecting the OS preference on first visit
 - Responsive from 360 px up, keyboard accessible (`Esc` closes, `/` focuses search), lazy-loaded images
 
@@ -73,10 +74,11 @@ Everything lives in `index.html`:
 - `PITHA_META` — relic, Bhairava and country for each Peetha
 - `UI_EN` / `L10N` — interface strings and per-language shrine names and summaries
 - `DEFAULT_LANG` — the language an unvisited browser sees
+- `mapURLs()` — every map provider link, built from the shrine's coordinates
 
 ## Credits
 
-Photographs: Wikimedia Commons contributors. Map links: Google, Apple and OpenStreetMap.
+Photographs: Wikimedia Commons contributors. Map links: Google, Mappls, Apple and OpenStreetMap.
 Built as a static, dependency-light page using Tailwind CSS (CDN), FontAwesome (CDN) and
 vanilla JavaScript.
 

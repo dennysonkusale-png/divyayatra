@@ -2518,6 +2518,8 @@ function mapURLs(s) {
     gdir: 'https://www.google.com/maps/dir/?api=1&destination=' + la + ',' + lo,
     apple: 'https://maps.apple.com/?ll=' + la + ',' + lo + '&q=' + label,
     osm: 'https://www.openstreetmap.org/?mlat=' + la + '&mlon=' + lo + '#map=16/' + la + '/' + lo,
+    mappls: 'https://mappls.com/@' + la + ',' + lo,
+    mapplsHotels: 'https://mappls.com/hotels/near/' + la + ',' + lo,
     geo: 'geo:' + la + ',' + lo + '?q=' + la + ',' + lo + '(' + label + ')',
     embed: 'https://www.openstreetmap.org/export/embed.html?bbox=' +
            (lo - d).toFixed(4) + '%2C' + (la - d * 0.7).toFixed(4) + '%2C' +
@@ -2772,9 +2774,12 @@ function detailHTML(item) {
         <i class="fa-regular fa-copy"></i> ${t('copy_coords')}
       </button>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-2.5">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-2.5">
       <a class="map-link primary" target="_blank" rel="noopener noreferrer" href="${u.gmaps}">
         <i class="fa-solid fa-location-dot"></i> Google Maps
+      </a>
+      <a class="map-link" target="_blank" rel="noopener noreferrer" href="${u.mappls}">
+        <i class="fa-solid fa-map-pin"></i> Mappls
       </a>
       <a class="map-link" target="_blank" rel="noopener noreferrer" href="${u.apple}">
         <i class="fa-brands fa-apple"></i> Apple Maps
@@ -2873,8 +2878,8 @@ function stayHTML(item) {
         <i class="fa-solid fa-suitcase-rolling"></i> MakeMyTrip
       </a>
       <a class="btn btn-ghost focus-ring" target="_blank" rel="noopener noreferrer"
-         href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('hotels near ' + item.lat + ',' + item.lng)}">
-        <i class="fa-solid fa-map-location-dot"></i> ${t('map_hotels')}
+         href="${mapURLs(item).mapplsHotels}">
+        <i class="fa-solid fa-map-location-dot"></i> ${t('map_hotels')} · Mappls
       </a>
     </div>
     ${tip}
